@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Personne index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center text-info">La liste des personnes</h1>
+ <br /> <br />
+
+    <a href="{{ path('personne_new') }}" class="btn btn-primary">Ajouter une personne</a>
+    <a href="{{ path('index') }}" class="btn btn-info">Retour àl'index</a>
+    <br />
+    <br />
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Tel</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for personne in personnes %}
+            <tr>
+                <td>{{ personne.id }}</td>
+                <td>{{ personne.name }}</td>
+                <td>{{ personne.tel }}</td>
+                <td>{{ personne.age }}</td>
+                <td>{{ personne.email }}</td>
+                <td>
+                    <a href="{{ path('personne_show', {'id': personne.id}) }}">show</a>
+                    <a href="{{ path('personne_edit', {'id': personne.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
